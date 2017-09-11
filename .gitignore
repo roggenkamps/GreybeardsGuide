@@ -218,3 +218,11 @@ TSWLatexianTemp*
 
 # expex forward references with \gathertags
 *-tags.tex
+
+# emacs
+*~
+*\#
+
+# Mac OSX
+
+._*
