@@ -107,7 +107,7 @@
 
 \begin{frame}{Starting a shell}
   \begin{itemize}
-  \item Log into a terminal
+  \item Start a terminal in a GUI environment
   \item Remotely execute a shell via \texttt{ssh}
   \item Log into a system console
   \end{itemize}
@@ -128,9 +128,61 @@
   \note{}
 \end{frame}
 
+\begin{frame}{Shell - file redirection}
+%  \includegraphics[width=10cm,scale=0.4]{images/man-k.png}
+  \begin{itemize}
+  \item 
+  \end{itemize}
+  \note{
+%%        echo Hello world! > hello.txt
+%%        echo ``A second line'' >> hello.txt
+%%        ls -l >ls.out
+%%        cat < hello.txt
+%%        cat *
+%%        file *
+%%        echo ''ls -l'' >>cmd.txt
+%%        . cmd.txt
+%%        echo ``#!/bin/bash'' >cmd1.txt
+%%        echo ''ls -al'' >>cmd1.txt
+%%        cat >cmd2.txt <<EOF
+%%        #!/bin/bash
+%%        ls -al *.txt
+%%        EOF
+       }
+\end{frame}
+
+\begin{frame}{Shell - executing scripts}
+%  \includegraphics[width=10cm,scale=0.4]{images/man-k.png}
+  \begin{itemize}
+  \item 
+  \end{itemize}
+  \note{
+%%        . cmd.txt
+%%        source cmd.txt
+%%        chmod +x cmd[12].txt
+%%        ./cmd1.txt
+%%        file *
+%%        ./cmd2.txt
+}
+\end{frame}
+
+\begin{frame}{Shell - filename patterns }
+%%  \includegraphics[width=10cm,scale=0.4]{images/man-k.png}
+  \begin{itemize}
+  \item 'file.out' matches a file named 'file.out'
+  \item *NIX does not respect ``filename extensions''
+  \item * matches any numbers of characters
+  \item ? matches a single character
+  \item \[xy\] matches characters 'x' and 'y'
+  \item \[x-y\] matches characters between 'x' and 'y' inclusive
+  \end{itemize}
+  \note{}
+\end{frame}
+
+
 
 \begin{frame}{What to type for a given command}
-  \includegraphics[width=10cm,scale=0.4]{images/newtty-3.png}
+%%  \includegraphics[width=10cm,scale=0.4]{images/newtty-3.png}
 
   \begin{itemize}
   \item \texttt{man ls} provides the manual page for \texttt{ls}
@@ -157,7 +209,7 @@
   \note{}
 \end{frame}
 
-\begin{frame}{Man pages}
+\begin{frame}{Man pages - cont.}
   \begin{itemize}
   \item UNIX documentation system
   \item Organized into multiple sections
@@ -176,18 +228,86 @@
   \note{}
 \end{frame}
 
-\begin{frame}{Man pages - cont.}
+\begin{frame}{Man pages - How to find commands}
+%%  \includegraphics[width=10cm,scale=0.4]{images/man-k.png}
   \begin{itemize}
   \item 
-  \item 
-  \item 
-  \item 
+  \end{itemize}
+  \note{man -k 'add.*user'}
+\end{frame}
+
+\begin{frame}{Pipes - Composing programs}
+  \begin{itemize}
+  \item Pipes feed the output from a program to the input of another program
+  \item Allow us to string programs together for ``one-of'' programs
+  \item Very efficient 
+    \begin{itemize}
+    \item Creates one process per program
+    \item File buffer between programs
+    \item Signals and scheduler coordinate writing and reading data
+      between programs - no extra files needed
+    \end{itemize}
+  \end{itemize}
+  \note{}
+\end{frame}
+
+\begin{frame}{Regular expressions - searching strings and finding things}
+  \begin{itemize}
+  \item Regular expressions allow you to search using string patterns
+` \item Many programs in *NIX make use of regular expressions:
+  \item Most characters match themselves, thus 'abc' matches the
+    string  ``abc''
+  \item Meta characters:
+    \begin{itemize}
+    \item \^{ }  matches the beginning of a line
+    \item \$ matches the end of a line
+    \item . matches a single character
+    \item ? matches zero or one of the preceding pattern
+    \item * matches zero or more of the preceding pattern
+    \item + matches zero or more of the preceding pattern
+    \item $\lbrack$ and $\rbrack$ indicate the start and end of a character class
+    \item ( and ) indicate the start and end of an atom
+    \item $\mid$ indicates an alternate
+    \item $\setminus$ before one of the above indicates an ordinary character
+    \end{itemize}
+  \end{itemize}
+  \note{grep'}
+\end{frame}
+
+\begin{frame}{Regular expressions - examples}
+  \begin{itemize}
+  \item /abc/  matches ``abc''
+  \item /[a-z]/ matches a lower case character
+  \item /[a-z][A-Za-z0-9\_]+/ matches identifiers in many languages
+  \item /\^[0-9]+\$/ matches a line containing only a single integer
+  \item /(for)$\mid$(if)$\mid$(switch)$\mid$(while)/ matches some C language control keywords
+  \end{itemize}
+  \note{}
+\end{frame}
+
+\begin{frame}{Regular expressions - grep}
+  \begin{itemize}
+  \item grep (Global Regular Expression Print) is the standard search
+    program
+  \item grep -i PATTERN FILES - ignores case
+  \item grep -l PATTERN FILES - prints just the FILES containing
+    PATTERN
+  \item grep -f RE\_FILE FILES - reads regular expressions, one per
+    line, from RE\_FILE
+  \end{itemize}
+  \note{}
+\end{frame}
+
+\begin{frame}{}
+%%  \includegraphics[width=10cm,scale=0.4]{images/man-k.png}
+  \begin{itemize}
   \item 
   \end{itemize}
   \note{}
 \end{frame}
 
 \begin{frame}{}
+%%  \includegraphics[width=10cm,scale=0.4]{images/man-k.png}
   \begin{itemize}
   \item 
   \end{itemize}
@@ -195,6 +315,7 @@
 \end{frame}
 
 \begin{frame}{}
+%%  \includegraphics[width=10cm,scale=0.4]{images/man-k.png}
   \begin{itemize}
   \item 
   \end{itemize}
@@ -202,6 +323,7 @@
 \end{frame}
 
 \begin{frame}{}
+%%  \includegraphics[width=10cm,scale=0.4]{images/man-k.png}
   \begin{itemize}
   \item 
   \end{itemize}
@@ -209,20 +331,7 @@
 \end{frame}
 
 \begin{frame}{}
-  \begin{itemize}
-  \item 
-  \end{itemize}
-  \note{}
-\end{frame}
-
-\begin{frame}{}
-  \begin{itemize}
-  \item 
-  \end{itemize}
-  \note{}
-\end{frame}
-
-\begin{frame}{}
+%%  \includegraphics[width=10cm,scale=0.4]{images/man-k.png}
   \begin{itemize}
   \item 
   \end{itemize}
