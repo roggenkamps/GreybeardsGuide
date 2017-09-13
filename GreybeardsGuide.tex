@@ -38,6 +38,7 @@
 
 
 \title[\PresTitle]{\PresTitle}
+\subtitle{or, how I learned to love the command line}
 
 \author[Steve Roggenkamp] % (optional, use only with lots of authors)
 {Steve Roggenkamp\\
@@ -49,10 +50,9 @@
 
 \institute[]{
  Institute for Biomedical Informatics\\
- 
- University of Kentucky\\
- 
- \href{mailto:steve.roggenkamp@uky.edu}{\nolinkurl{steve.roggenkamp@uky.edu}}
+  University of Kentucky\\
+  \href{mailto:steve.roggenkamp@uky.edu}{\nolinkurl{steve.roggenkamp@uky.edu}}\\
+  \href{https://github.com/roggenkamps/GreybeardsGuide}{\nolinkurl{https://github.com/roggenkamps/GreybeardsGuide}}
 }
 
 \subject{\PresTitle}
@@ -68,34 +68,46 @@
 %  \end{itemize}
 % \end{frame}
 
-\begin{frame}{Why learn to use the command line?}
+\begin{frame}{Why???}
+  The command line is Ancient and Decrepit? Why waste time on it?
+  \pause
   \begin{itemize}
   \item Systems administration
+  \pause
   \item Resource constrained systems
     \begin{itemize}
     \item Embedded systems
+      \pause
     \item High performance systems
     \end{itemize}
+  \pause
   \item It can do a lot for you
   \end{itemize}
   \note{}
 \end{frame}
 
-\begin{frame}{The Shell}
+\begin{frame}{The Shell, a must have}
   \begin{itemize}
-    \item Parses your input and executes commands
+  \item Parses your input and executes commands, think REPL
+    \pause
     \item Provides an environment in which you work
-    \item Provides a scripting programming language
+    \pause
+    \item Provides a scripting programming language to automate tasks
   \end{itemize}
 \end{frame}
 
 \begin{frame}{Shells - If you don't like one, try another}
   \begin{itemize}
   \item \texttt{ash}, \texttt{bash}, \texttt{dash}
+    \pause
   \item Bourne shell, Korn shell, PD Korn,  Bourne-again shell
+    \pause
   \item \texttt{csh}, \texttt{tcsh}, \texttt{zsh}
+    \pause
   \item Busybox (which normally uses \texttt{ash})
+    \pause
   \item Each provides unique set of capabilities
+    \pause
   \item Today's talk focuses on Bourne-again shell, aka, \texttt{bash}
     \begin{itemize}
     \item Default shell for most Linux and Mac OSX
@@ -129,10 +141,10 @@
 \end{frame}
 
 \begin{frame}{Shell - file redirection}
-%  \includegraphics[width=10cm,scale=0.4]{images/man-k.png}
-  \begin{itemize}
-  \item 
-  \end{itemize}
+  \includegraphics[width=12cm,scale=0.4]{images/file-redir.png}
+%  \begin{itemize}
+%  \item 
+%  \end{itemize}
   \note{
 %%        echo Hello world! > hello.txt
 %%        echo ``A second line'' >> hello.txt
@@ -152,10 +164,10 @@
 \end{frame}
 
 \begin{frame}{Shell - executing scripts}
-%  \includegraphics[width=10cm,scale=0.4]{images/man-k.png}
-  \begin{itemize}
-  \item 
-  \end{itemize}
+  \includegraphics[width=10cm,scale=0.4]{images/scripting.png}
+%  \begin{itemize}
+%  \item 
+%  \end{itemize}
   \note{
 %%        . cmd.txt
 %%        source cmd.txt
@@ -167,25 +179,46 @@
 \end{frame}
 
 \begin{frame}{Shell - filename patterns }
-%%  \includegraphics[width=10cm,scale=0.4]{images/man-k.png}
+  \includegraphics[width=10cm,scale=0.4]{images/filepat.png}
+  \raisebox{10pt}[0pt][0pt]{
+    \vbox{
+        \begin{itemize}
+        \item 'file.out' matches a file named 'file.out'
+        \item *NIX does not respect ``filename extensions''
+        \item * matches any numbers of characters
+        \item ? matches a single character
+        \item \lbrack xy\rbrack matches characters 'x' and 'y'
+        \item \lbrack x-z\rbrack matches characters between 'x' and 'z' inclusive
+        \end{itemize}
+}}
+  \note{}
+\end{frame}
+
+\begin{frame}{Pipes - Composing programs}
   \begin{itemize}
-  \item 'file.out' matches a file named 'file.out'
-  \item *NIX does not respect ``filename extensions''
-  \item * matches any numbers of characters
-  \item ? matches a single character
-  \item \[xy\] matches characters 'x' and 'y'
-  \item \[x-y\] matches characters between 'x' and 'y' inclusive
+  \item Pipes feed the output from a program to the input of another program
+  \item Allow us to string programs together for ``one-of'' programs
+  \item Very efficient 
+    \begin{itemize}
+    \item Creates one process per program
+    \item File buffer between programs
+    \item Signals and scheduler coordinate writing and reading data
+      between programs - no extra files needed
+    \end{itemize}
   \end{itemize}
   \note{}
 \end{frame}
 
-
+\begin{frame}{Pipe examples}
+  \includegraphics[width=10cm,scale=0.4]{images/pipes.png}
+  \note{}
+\end{frame}
 
 \begin{frame}{What to type for a given command}
-%%  \includegraphics[width=10cm,scale=0.4]{images/newtty-3.png}
-
+  \includegraphics[width=10cm,scale=0.4]{images/manls.png}
   \begin{itemize}
-  \item \texttt{man ls} provides the manual page for \texttt{ls}
+  \item \texttt{man} \textit{command}  provides the manual page for \textit{command}
+  \item  \texttt{man ls} in the example above
   \end{itemize}
   \note{}
 \end{frame}
@@ -228,27 +261,9 @@
   \note{}
 \end{frame}
 
-\begin{frame}{Man pages - How to find commands}
-%%  \includegraphics[width=10cm,scale=0.4]{images/man-k.png}
-  \begin{itemize}
-  \item 
-  \end{itemize}
-  \note{man -k 'add.*user'}
-\end{frame}
-
-\begin{frame}{Pipes - Composing programs}
-  \begin{itemize}
-  \item Pipes feed the output from a program to the input of another program
-  \item Allow us to string programs together for ``one-of'' programs
-  \item Very efficient 
-    \begin{itemize}
-    \item Creates one process per program
-    \item File buffer between programs
-    \item Signals and scheduler coordinate writing and reading data
-      between programs - no extra files needed
-    \end{itemize}
-  \end{itemize}
-  \note{}
+\begin{frame}{Man pages - How to find commands with 'man -k'}
+  \includegraphics[width=10cm,scale=0.4]{images/man-k.png}
+  \note{man -k 'ruby'}
 \end{frame}
 
 \begin{frame}{Regular expressions - searching strings and finding things}
@@ -267,8 +282,8 @@
     \item + matches zero or more of the preceding pattern
     \item $\lbrack$ and $\rbrack$ indicate the start and end of a character class
     \item ( and ) indicate the start and end of an atom
-    \item $\mid$ indicates an alternate
-    \item $\setminus$ before one of the above indicates an ordinary character
+%    \item $\mid$ indicates an alternate
+%    \item $\setminus$ before one of the above indicates an ordinary character
     \end{itemize}
   \end{itemize}
   \note{grep'}
@@ -280,7 +295,7 @@
   \item /[a-z]/ matches a lower case character
   \item /[a-z][A-Za-z0-9\_]+/ matches identifiers in many languages
   \item /\^[0-9]+\$/ matches a line containing only a single integer
-  \item /(for)$\mid$(if)$\mid$(switch)$\mid$(while)/ matches some C language control keywords
+  \item /\^a.*z\$/ matches a line starting with 'a' and ending with 'z'
   \end{itemize}
   \note{}
 \end{frame}
@@ -298,42 +313,125 @@
   \note{}
 \end{frame}
 
-\begin{frame}{}
+\begin{frame}{find - Query your file system}
 %%  \includegraphics[width=10cm,scale=0.4]{images/man-k.png}
   \begin{itemize}
-  \item 
+  \item find traverses a file system performing an action on each file it matches
+  \item It provides many filters to fine tune a query:
+    \begin{itemize}
+    \item file name pattern
+    \item file types (regular file, directories, links)
+    \item file properties (create time, modification time, etc.)
+    \item owner, group
+    \item number of links
+    \item and more
+    \end{itemize}
+  \item Default action is print the name of the file
   \end{itemize}
   \note{}
 \end{frame}
 
-\begin{frame}{}
+\begin{frame}{find - Example}
+  \includegraphics[width=10cm,scale=0.4]{images/find.png}
+%%  \begin{itemize}
+%%  \item 
+%%  \end{itemize}
+  \note{}
+\end{frame}
+
+\begin{frame}{find - Example using sed to filter}
+  \includegraphics[width=10cm,scale=0.4]{images/find-1.png}
+%%  \begin{itemize}
+%%  \item 
+%%  \end{itemize}
+  \note{}
+\end{frame}
+
+\begin{frame}{Command substitution - use the shell to write your commands}
 %%  \includegraphics[width=10cm,scale=0.4]{images/man-k.png}
   \begin{itemize}
-  \item 
+  \item \texttt{\$( \textit{pipe} ) } executes \textit{pipe} and
+    substitutes the text in place
   \end{itemize}
   \note{}
 \end{frame}
 
-\begin{frame}{}
+\begin{frame}{Command substitution - cont}
+  \includegraphics[width=10cm,scale=0.4]{images/cs-1.png}
+%%  \begin{itemize}
+%%  \item 
+%%  \end{itemize}
+  \note{}
+\end{frame}
+
+\begin{frame}{Command substitution - cont}
+  \includegraphics[width=10cm,scale=0.4]{images/cs-2.png}
+%%  \begin{itemize}
+%%  \item 
+%%  \end{itemize}
+  \note{}
+\end{frame}
+
+\begin{frame}{Common programs}
 %%  \includegraphics[width=10cm,scale=0.4]{images/man-k.png}
   \begin{itemize}
-  \item 
+  \item awk - The AWK text processing language
+  \item grep - find strings in files
+  \item less - display a file a screen at a time
+  \item ls - list files
+  \item sed - Stream editor
+  \item sort - Sort lines of a file
+  \item uniq - Filters out repeated lines in sorted files
+  \item wc - Counts characters, words and lines of a file
+  \item xargs - used with \texttt{find} to execute a command on
+    multiple files
   \end{itemize}
   \note{}
 \end{frame}
 
-\begin{frame}{}
+\begin{frame}{Example problem - Solve NPR Sunday puzzle}
 %%  \includegraphics[width=10cm,scale=0.4]{images/man-k.png}
-  \begin{itemize}
-  \item 
-  \end{itemize}
+
+  From NPR Weekend Edition Sunday, Sept 4, 2016.
+
+  \bigskip
+  Next week's challenge, from listener Norm Baird of Toledo, Wash.: If
+  you squish the small letters "r" and "n" too closely together, they
+  look like an "m." Think of a common five-letter word with the
+  consecutive letters "r" and "n" that becomes its own opposite if you
+  change them to an "m."
+  
+  \bigskip
+  About 840 people solved this puzzle.
+  
+  \bigskip
+  Let's use our Ancient and Decrepit Tools to solve it in just two
+  lines of code.
   \note{}
 \end{frame}
 
 \begin{frame}{}
-%%  \includegraphics[width=10cm,scale=0.4]{images/man-k.png}
+  \includegraphics[width=10cm,scale=0.4]{images/puzzle.png}
+
+  Answer: STERN and STEM
+  \note{}
+\end{frame}
+
+\begin{frame}{Wrapup}
   \begin{itemize}
-  \item 
+  \item Covered why you might want to use the command line
+  \item Described six concepts essential to efficient use of command
+    line:
+    \begin{itemize}
+    \item Command shell
+    \item Pipes to connect commands
+    \item Man pages for documentation
+    \item Regular expressions for text searchig
+    \item Find to query a file system
+    \item Command substitution
+    \end{itemize}
+  \item Demonstrated efficient command line use to solve an NPR Sunday puzzle
+    in two lines of code
   \end{itemize}
   \note{}
 \end{frame}
