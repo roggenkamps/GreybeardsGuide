@@ -86,6 +86,30 @@
   \note{}
 \end{frame}
 
+\begin{frame}{What we're going to cover}
+  \begin{itemize}
+  \item Six essential concepts to efficiently use command line:
+    \pause
+    \begin{itemize}
+    \item Command shell
+    \pause
+    \item Pipes to connect commands
+    \pause
+    \item Man pages for documentation
+    \pause
+    \item Regular expressions for text processing
+    \pause
+    \item \texttt{find} to query file systems
+    \pause
+    \item Command substitution
+    \end{itemize}
+    \pause
+  \item Solve a practical problem with just a line or two of code
+  \end{itemize}
+  \note{}
+\end{frame}
+
+
 \begin{frame}{The Shell, a must have}
   \begin{itemize}
   \item Parses your input and executes commands, think REPL
@@ -142,9 +166,11 @@
 
 \begin{frame}{Shell - file redirection}
   \includegraphics[width=12cm,scale=0.4]{images/file-redir.png}
-%  \begin{itemize}
-%  \item 
-%  \end{itemize}
+  \begin{itemize}
+  \item \texttt{>} redirects a program's standard output to a file
+  \item \texttt{>>} appends a program's standard output to a file
+  \item \texttt{<} redirects a file to a program's standard input 
+  \end{itemize}
   \note{
 %%        echo Hello world! > hello.txt
 %%        echo ``A second line'' >> hello.txt
@@ -178,19 +204,23 @@
 }
 \end{frame}
 
-\begin{frame}{Shell - filename patterns }
+\begin{frame}{Shell - filename patterns}
   \includegraphics[width=10cm,scale=0.4]{images/filepat.png}
-  \raisebox{10pt}[0pt][0pt]{
-    \vbox{
-        \begin{itemize}
-        \item 'file.out' matches a file named 'file.out'
-        \item *NIX does not respect ``filename extensions''
-        \item * matches any numbers of characters
-        \item ? matches a single character
-        \item \lbrack xy\rbrack matches characters 'x' and 'y'
-        \item \lbrack x-z\rbrack matches characters between 'x' and 'z' inclusive
-        \end{itemize}
-}}
+  \begin{itemize}
+  \item *NIX does not respect ``filename extensions''
+  \item 'cmd.txt' matches a file named 'cmd.txt'
+  \item ? matches a single character
+  \item * matches any numbers of characters
+  \end{itemize}
+  \note{}
+\end{frame}
+
+\begin{frame}{Shell - filename patterns, cont.}
+  \includegraphics[width=10cm,scale=0.4]{images/filepat-1.png}
+  \begin{itemize}
+  \item \lbrack xy\rbrack matches characters 'x' and 'y'
+  \item \lbrack x-z\rbrack matches characters between 'x' and 'z' inclusive
+  \end{itemize}
   \note{}
 \end{frame}
 
@@ -234,7 +264,7 @@
     \item OPTIONS - options and their description
     \item EXAMPLES - example invocations and what they do
     \item EXIT STATUS - \texttt{exit(2)} codes (0 indicates success) 
-    \item ENVIROMENT - how shell variables affect program
+    \item ENVIRONMENT - how shell variables affect program
     \item SEE ALSO - other programs or documents to consult
     \item BUGS - known issues
     \end{itemize}
@@ -266,26 +296,28 @@
   \note{man -k 'ruby'}
 \end{frame}
 
-\begin{frame}{Regular expressions - searching strings and finding things}
+\begin{frame}{Regular expressions - searching text}
   \begin{itemize}
   \item Regular expressions allow you to search using string patterns
-` \item Many programs in *NIX make use of regular expressions:
-  \item Most characters match themselves, thus 'abc' matches the
+  \item Many programs in *NIX use regular expressions
+  \item Most characters match themselves, 'abc' matches the
     string  ``abc''
   \item Meta characters:
     \begin{itemize}
-    \item \^{ }  matches the beginning of a line
-    \item \$ matches the end of a line
-    \item . matches a single character
-    \item ? matches zero or one of the preceding pattern
-    \item * matches zero or more of the preceding pattern
-    \item + matches zero or more of the preceding pattern
-    \item $\lbrack$ and $\rbrack$ indicate the start and end of a character class
-    \item ( and ) indicate the start and end of an atom
+    \item \texttt{\^{ }}  matches the beginning of a line
+    \item \texttt{\$} matches the end of a line
+    \item \texttt{.} matches a single character
+    \item \texttt{?} matches zero or one of the preceding pattern
+    \item \texttt{*} matches zero or more of the preceding pattern
+    \item \texttt{+} matches zero or more of the preceding pattern
+    \item \texttt{$\lbrack$} and \texttt{$\rbrack$} indicate the start and end of a character class
+    \item \texttt{(} and \texttt{)} indicate the start and end of an atom
 %    \item $\mid$ indicates an alternate
 %    \item $\setminus$ before one of the above indicates an ordinary character
     \end{itemize}
+  \item \texttt{$\setminus$} escapes meta characters: \texttt{$\setminus$\$} matches \texttt{\$}
   \end{itemize}
+  
   \note{grep'}
 \end{frame}
 
@@ -294,29 +326,29 @@
   \item /abc/  matches ``abc''
   \item /[a-z]/ matches a lower case character
   \item /[a-z][A-Za-z0-9\_]+/ matches identifiers in many languages
-  \item /\^[0-9]+\$/ matches a line containing only a single integer
-  \item /\^a.*z\$/ matches a line starting with 'a' and ending with 'z'
+  \item /\^{ }[0-9]+\$/ matches a line containing only a single integer
+  \item /\^{ }a.*z\$/ matches a line starting with 'a' and ending with 'z'
   \end{itemize}
   \note{}
 \end{frame}
 
 \begin{frame}{Regular expressions - grep}
   \begin{itemize}
-  \item grep (Global Regular Expression Print) is the standard search
+  \item \texttt{grep} (Global Regular Expression Print) is the standard search
     program
-  \item grep -i PATTERN FILES - ignores case
-  \item grep -l PATTERN FILES - prints just the FILES containing
+  \item \texttt{grep -i} PATTERN FILES - ignores case
+  \item \texttt{grep -l} PATTERN FILES - prints just the FILES containing
     PATTERN
-  \item grep -f RE\_FILE FILES - reads regular expressions, one per
+  \item \texttt{grep -f} RE\_FILE FILES - reads regular expressions, one per
     line, from RE\_FILE
   \end{itemize}
   \note{}
 \end{frame}
 
-\begin{frame}{find - Query your file system}
+\begin{frame}{\texttt{find} - Query your file system}
 %%  \includegraphics[width=10cm,scale=0.4]{images/man-k.png}
   \begin{itemize}
-  \item find traverses a file system performing an action on each file it matches
+  \item \texttt{find} traverses a file system performing an action on each file it matches
   \item It provides many filters to fine tune a query:
     \begin{itemize}
     \item file name pattern
@@ -331,7 +363,7 @@
   \note{}
 \end{frame}
 
-\begin{frame}{find - Example}
+\begin{frame}{\texttt{find} - Example}
   \includegraphics[width=10cm,scale=0.4]{images/find.png}
 %%  \begin{itemize}
 %%  \item 
@@ -339,7 +371,7 @@
   \note{}
 \end{frame}
 
-\begin{frame}{find - Example using sed to filter}
+\begin{frame}{\texttt{find} - Example using sed to filter}
   \includegraphics[width=10cm,scale=0.4]{images/find-1.png}
 %%  \begin{itemize}
 %%  \item 
@@ -375,15 +407,23 @@
 \begin{frame}{Common programs}
 %%  \includegraphics[width=10cm,scale=0.4]{images/man-k.png}
   \begin{itemize}
-  \item awk - The AWK text processing language
-  \item grep - find strings in files
-  \item less - display a file a screen at a time
-  \item ls - list files
-  \item sed - Stream editor
-  \item sort - Sort lines of a file
-  \item uniq - Filters out repeated lines in sorted files
-  \item wc - Counts characters, words and lines of a file
-  \item xargs - used with \texttt{find} to execute a command on
+  \item \texttt{awk} - The AWK text processing language
+    \pause
+  \item \texttt{grep} - find strings in files
+    \pause
+  \item \texttt{less} - display a file a screen at a time
+    \pause
+  \item \texttt{ls} - list files
+    \pause
+  \item \texttt{sed} - Stream editor
+    \pause
+  \item \texttt{sort} - Sort lines of a file
+    \pause
+  \item \texttt{uniq} - Filters out repeated lines in sorted files
+    \pause
+  \item \texttt{wc} - Counts characters, words and lines of a file
+    \pause
+  \item \texttt{xargs} - used with \texttt{find} to execute a command on
     multiple files
   \end{itemize}
   \note{}
@@ -417,19 +457,26 @@
   \note{}
 \end{frame}
 
-\begin{frame}{Wrapup}
+\begin{frame}{Wrap up}
   \begin{itemize}
   \item Covered why you might want to use the command line
+    \pause
   \item Described six concepts essential to efficient use of command
     line:
     \begin{itemize}
     \item Command shell
+    \pause
     \item Pipes to connect commands
+    \pause
     \item Man pages for documentation
-    \item Regular expressions for text searchig
-    \item Find to query a file system
+    \pause
+    \item Regular expressions for text processing
+    \pause
+    \item \texttt{find} to query file systems
+    \pause
     \item Command substitution
     \end{itemize}
+    \pause
   \item Demonstrated efficient command line use to solve an NPR Sunday puzzle
     in two lines of code
   \end{itemize}
